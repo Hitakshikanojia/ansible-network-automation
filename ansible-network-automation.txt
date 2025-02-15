@@ -1,0 +1,48 @@
+Last login: Sat Feb 15 10:00:53 on console
+hitakshikanojia@MacBookAir ~ % nano network_scanner.py  # Opens nano editor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  UW PICO 5.09                File: network_scanner.py                Modified  
+
+
+import scapy.all as scapy
+
+def scan(ip):
+    arp_request = scapy.ARP(pdst=ip)
+    broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
+    arp_request_broadcast = broadcast / arp_request
+    answered_list = scapy.srp(arp_request_broadcast, timeout=1, verbose=False)[$
+
+    print("IP Address\t\tMAC Address")
+    print("--------------------------------------")
+    for element in answered_list:
+        print(element[1].psrc + "\t\t" + element[1].hwsrc)
+
+ip_range = input("Enter the IP range (e.g., 192.168.1.1/24): ")
+scan(ip_range)
+
+
+
+
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Pg   ^K Cut Text  ^C Cur Pos   
+^X Exit      ^J Justify   ^W Where is  ^V Next Pg   ^U UnCut Text^T To Spell  
